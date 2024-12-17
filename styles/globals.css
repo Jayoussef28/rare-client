@@ -27,16 +27,52 @@ body {
 }
 
 #intro-text-container {
-  font-family: mnsterrat;
+  font-family: montserrat;
   color: rgba(255, 253, 208, 0.836);
   text-shadow: 0px 0px 3px black;
   user-select: none;
+  font-style: italic;
 }
 
 #login-button {
-  border-radius: none;
+  margin-top: 10vh;
+  border: none;
+  font-family: arial;
+  background-color: rgba(18, 86, 146, 0.63);
+  font-weight: 100;
+  color: rgba(211, 174, 174, 0.781);
+  transition: 0.2s ease all;
+}
+
+#submit {
+  margin-top: 2vh;
+  border: none;
+  font-family: arial;
+  background-color: rgba(18, 86, 146, 0.63);
+  font-weight: 100;
+  color: rgba(211, 174, 174, 0.781);
+  transition: 0.2s ease all;
+  width: 200px;
+  border-radius: 20px;
+}
+
+#login-button:hover,
+#submit:hover {
+  background-color: rgba(22, 136, 235, 0.774);
+  color: rgb(255, 255, 255);
+}
+
+#login-button:active,
+#submit:active {
+  background-color: rgba(22, 136, 235, 0.774);
 }
 
 .bi:hover {
   cursor: pointer;
+}
+
+#register-form {
+  margin-top: 10vh;
+  padding: 100px;
+  text-align: center;
 }
