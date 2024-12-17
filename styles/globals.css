@@ -1,11 +1,16 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
+@font-face {
+  font-family: montserrat;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap')
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
 a {
@@ -18,7 +23,18 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-image: url(./rare-background.png);
+}
+
+#intro-text-container {
+  font-family: mnsterrat;
+  color: rgba(255, 253, 208, 0.836);
+  text-shadow: 0px 0px 3px black;
+  user-select: none;
+}
+
+#login-button {
+  border-radius: none;
 }
 
 .bi:hover {

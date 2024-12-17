@@ -12,15 +12,14 @@ function Signin() {
         margin: '0 auto',
         zIndex: 1,
         minHeight: '25rem',
-        width: '100%',
+        width: '40%',
         minWidth: '30rem',
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
+      <h1 id="intro-text-container">RARE <span style={{ fontSize: '0.6em', marginBottom: '200px' }}>©</span></h1>
+      <Button id="login-button" type="button" size="lg" className="copy-btn" onClick={signIn}>
+        user login
       </Button>
     </div>
   );

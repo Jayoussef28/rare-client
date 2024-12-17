@@ -34,6 +34,7 @@ export default function NavBar() {
           }}
           >
             {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
+
             <div style={{
               display: 'flex',
             }}
@@ -41,6 +42,9 @@ export default function NavBar() {
               <Link passHref href="/">
                 <Nav.Link>Home</Nav.Link>
               </Link>
+            <Link passHref href="/posts">
+              <Nav.Link>Posts</Nav.Link>
+            </Link>
               <Link passHref href="/tags">
                 <Nav.Link>Tags</Nav.Link>
               </Link>
@@ -54,6 +58,7 @@ export default function NavBar() {
                 Sign Out
               </Button>
             </div>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
