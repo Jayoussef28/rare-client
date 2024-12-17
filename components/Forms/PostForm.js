@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { createPost, updatePost } from '../../api/PostData';
 import { useAuth } from '../../utils/context/authContext';
+import { getCategory } from '../../api/categoryData';
 
 const initialState = {
-  categoryid: '',
+  category: '',
   title: '',
   publication_date: '',
   image_url: '',
@@ -16,16 +17,26 @@ const initialState = {
 
 export default function PostForm({ obj }) {
   const [postInput, setPostInput] = useState(initialState);
+  const [categories, setCategories] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     if (obj.id) {
-      setPostInput(obj);
+      setPostInput({
+        ...obj,
+        category: obj.category.id,
+      });
     } else {
       setPostInput(initialState);
     }
   }, [obj]);
+
+  useEffect(() => {
+    getCategory().then(setCategories);
+  }, []);
+
+  console.warn(categories);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +52,7 @@ export default function PostForm({ obj }) {
       const postItem = {
         id: obj.id,
         user: obj.user.id,
-        categoryid: postInput.category.id,
+        categoryid: postInput.category,
         title: postInput.title,
         publication_date: postInput.publication_date,
         image_url: postInput.image_url,
@@ -54,7 +65,9 @@ export default function PostForm({ obj }) {
         ...postInput,
         user: user.uid,
         approved: postInput.approved,
+        categoryid: postInput.category,
       };
+      console.warn(payload);
       createPost(payload).then(() => router.push('/posts'));
     }
   };
@@ -106,12 +119,27 @@ export default function PostForm({ obj }) {
         />
       </FloatingLabel>
 
-      <Form.Control
-        type="hidden"
-        name="category"
-        value={postInput.category}
-        required
-      />
+      <FloatingLabel controlId="floatingSelect" label="category">
+        <Form.Select
+          name="category"
+          onChange={handleChange}
+          value={postInput.category}
+          required
+          style={{ marginBottom: '15px' }}
+        >
+          <option value="">Select a category</option>
+          {
+            categories.map((category) => (
+              <option
+                key={category.id}
+                value={category.id}
+              >
+                {category.label}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
 
       <Form.Control
         type="hidden"
@@ -129,7 +157,10 @@ PostForm.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.number,
-    category: PropTypes.number,
+    category: PropTypes.shape({
+      id: PropTypes.number,
+      label: PropTypes.string,
+    }),
     title: PropTypes.string,
     // publication_date: PropTypes.instanceOf(Date),
     publication_date: PropTypes.string,

@@ -23,7 +23,7 @@ const getSingleCategory = (id) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => resolve((data)))
     .catch(reject);
 });
 
@@ -65,7 +65,6 @@ const deleteCategory = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
