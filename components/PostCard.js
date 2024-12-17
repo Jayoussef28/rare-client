@@ -31,7 +31,7 @@ function PostCard({ postObj }) {
 
 PostCard.propTypes = {
   postObj: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     user: PropTypes.string,
     category: PropTypes.string,
     title: PropTypes.string,
