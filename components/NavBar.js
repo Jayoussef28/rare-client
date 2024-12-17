@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
@@ -42,11 +44,14 @@ export default function NavBar() {
               <Link passHref href="/">
                 <Nav.Link>Home</Nav.Link>
               </Link>
-            <Link passHref href="/posts">
-              <Nav.Link>Posts</Nav.Link>
-            </Link>
+              <Link passHref href="/posts">
+                <Nav.Link>Posts</Nav.Link>
+              </Link>
               <Link passHref href="/tags">
                 <Nav.Link>Tags</Nav.Link>
+              </Link>
+              <Link passHref href="/category">
+                <Nav.Link>Category</Nav.Link>
               </Link>
             </div>
             <div style={{
