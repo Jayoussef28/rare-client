@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { createPost, updatePost } from '../../api/PostData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  id: '',
-  user: '',
-  category: '',
+  categoryid: '',
   title: '',
   publication_date: '',
   image_url: '',
@@ -14,8 +14,10 @@ const initialState = {
   approved: true,
 };
 
-export default function PostForm({ obj, onSubmit }) {
+export default function PostForm({ obj }) {
   const [postInput, setPostInput] = useState(initialState);
+  const router = useRouter();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (obj.id) {
@@ -38,29 +40,22 @@ export default function PostForm({ obj, onSubmit }) {
     if (obj.id) {
       const postItem = {
         id: obj.id,
-        user: postInput.user,
-        category: postInput.category,
+        user: obj.user.id,
+        categoryid: postInput.category.id,
         title: postInput.title,
         publication_date: postInput.publication_date,
         image_url: postInput.image_url,
         content: postInput.content,
         approved: postInput.approved,
       };
-      updatePost(postItem).then(onSubmit);
+      updatePost(postItem).then(() => router.push('/posts'));
     } else {
       const payload = {
-        user: postInput.user,
-        category: postInput.category,
-        title: postInput.title,
-        publication_date: postInput.publication_date,
-        image_url: postInput.image_url,
-        content: postInput.content,
+        ...postInput,
+        user: user.uid,
         approved: postInput.approved,
       };
-      createPost(payload).then(() => {
-        setPostInput(initialState);
-        onSubmit();
-      });
+      createPost(payload).then(() => router.push('/posts'));
     }
   };
 
@@ -113,13 +108,6 @@ export default function PostForm({ obj, onSubmit }) {
 
       <Form.Control
         type="hidden"
-        name="user"
-        value={postInput.user}
-        required
-      />
-
-      <Form.Control
-        type="hidden"
         name="category"
         value={postInput.category}
         required
@@ -139,16 +127,17 @@ export default function PostForm({ obj, onSubmit }) {
 
 PostForm.propTypes = {
   obj: PropTypes.shape({
-    id: PropTypes.string,
-    user: PropTypes.string,
-    category: PropTypes.string,
+    id: PropTypes.number,
+    user: PropTypes.number,
+    category: PropTypes.number,
     title: PropTypes.string,
-    publication_date: PropTypes.instanceOf(Date),
+    // publication_date: PropTypes.instanceOf(Date),
+    publication_date: PropTypes.string,
     image_url: PropTypes.string,
     content: PropTypes.string,
     approved: PropTypes.bool,
   }),
-  onSubmit: PropTypes.func.isRequired,
+  // onSubmit: PropTypes.func.isRequired,
 };
 
 PostForm.defaultProps = {

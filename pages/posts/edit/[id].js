@@ -12,5 +12,8 @@ export default function EditPost() {
   useEffect(() => {
     getSinglePost(id).then(setEditobj);
   }, [id]);
+
+  console.warn(editobj);
+
   return (<PostForm obj={editobj} />);
 }
