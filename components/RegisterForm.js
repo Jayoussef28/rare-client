@@ -28,14 +28,13 @@ function RegisterForm({ user, updateUser }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} id="register-form">
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>register</Form.Label>
         <Form.Control as="textarea" name="bio" required placeholder="tell me about you..." onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
-        <Form.Control as="textarea" name="profileImageUrl" required placeholder="put an image url here..." onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
+        <Form.Control as="textarea" name="profileImageUrl" required placeholder="put an image url here..." onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} style={{ marginTop: '30px' }} />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
+      <Button variant="primary" type="submit" id="submit">
+        submit
       </Button>
     </Form>
   );

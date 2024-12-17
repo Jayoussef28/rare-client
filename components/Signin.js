@@ -12,7 +12,7 @@ function Signin() {
         margin: '0 auto',
         zIndex: 1,
         minHeight: '25rem',
-        width: '40%',
+        width: '30%',
         minWidth: '30rem',
         paddingBlock: '0 5rem',
       }}
