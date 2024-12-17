@@ -8,6 +8,9 @@ function RegisterForm({ user, updateUser }) {
   console.warn(user);
   const fullName = user.fbUser.displayName.split(' ');
   const date = new Date();
+  if (!fullName[1]) {
+    fullName[1] = 'Doe';
+  }
 
   const [formData, setFormData] = useState({
     firstName: fullName[0],
