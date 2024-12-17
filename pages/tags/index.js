@@ -26,7 +26,7 @@ export default function Tags() {
           ))}
         </div>
         <div style={{
-          border: '3px solid black', borderRadius: '50px', margin: '15px', padding: '25px 25px 15px 25px',
+          height: '250px', border: '3px solid black', borderRadius: '50px', margin: '15px', padding: '25px 25px 15px 25px',
         }}
         >
           <h1 style={{ margin: '15px' }}>Create a New Tag</h1>

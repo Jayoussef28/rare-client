@@ -1,8 +1,7 @@
-/* eslint-disable react/style-prop-object */
-/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 import { createCategory, updateCategory } from '../../api/categoryData';
 
 const initialState = {
@@ -12,8 +11,8 @@ const initialState = {
 
 export default function CategoryForm({ obj, onSubmit }) {
   const [formInput, setFormInput] = useState(initialState);
+  const router = useRouter();
 
-  // STATE
   useEffect(() => {
     if (obj.id) {
       setFormInput(obj);
@@ -37,7 +36,7 @@ export default function CategoryForm({ obj, onSubmit }) {
         id: obj.id,
         label: formInput.label,
       };
-      updateCategory(updatedCategory).then(onSubmit);
+      updateCategory(updatedCategory).then(() => router.push('/category'));
     } else {
       const payload = formInput.label;
       createCategory(payload).then(() => {
@@ -49,19 +48,25 @@ export default function CategoryForm({ obj, onSubmit }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FloatingLabel controlId="floatingTextarea" label="category" className="mb-3">
+      <div style={obj.id ? {
+        display: 'flex', width: '100%', justifyContent: 'space-between', padding: '0px', margin: '0px',
+      } : {
+        display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap', width: '100%', padding: '0px', margin: '0px',
+      }}
+      >
         <Form.Control
           as="textarea"
-          placeholder="category"
-          style={{ height: '100px' }}
-          name="category"
+          placeholder={obj.id ? '' : 'Create a new category'}
+          style={obj.id ? { height: '20px', width: '90%' } : { height: '20px', width: '80%' }}
+          name="label"
           value={formInput.label}
           onChange={handleChange}
           required
         />
-      </FloatingLabel>
 
-      <Button type="submit">{obj.id ? 'Update' : 'Create'} CATEGORY</Button>
+        <Button style={obj.id ? { marginLeft: '10px', width: '160px' } : { width: '120px', marginTop: '10px' }} type="submit">{obj.id ? 'Update' : 'Add'} Category</Button>
+      </div>
+
     </Form>
   );
 }

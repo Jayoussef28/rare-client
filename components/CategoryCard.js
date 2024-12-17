@@ -19,11 +19,11 @@ function CategoryCard({ categoryObj, onUpdate }) {
     >
       <Card.Body>
         <Card.Title>{categoryObj.label}</Card.Title>
-        <Link href={`/category/${categoryObj.label}`} passHref>
+        {/* <Link href={`/category/${categoryObj.label}`} passHref>
           <Button variant="light" className="m-2">VIEW</Button>
-        </Link>
+        </Link> */}
 
-        <Link href={`/category/edit/${categoryObj.label}`} passHref>
+        <Link href={`/category/edit/${categoryObj.id}`} passHref>
           <Button variant="light">EDIT</Button>
         </Link>
         <Button variant="light" onClick={deleteThisCategory} className="m-2">
