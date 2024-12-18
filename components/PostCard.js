@@ -21,6 +21,9 @@ function PostCard({ postObj }) {
         <Link href={`/posts/edit/${postObj.id}`} passHref>
           <Button variant="outline-dark" color="success">EDIT</Button>
         </Link>
+        <Link href={`/posts/view/${postObj.id}`} passHref>
+          <Button variant="outline-dark" color="success">View Comments</Button>
+        </Link>
         <Button variant="outline-danger" onClick={deleteThisPost} className="m-2">
           DELETE
         </Button>
