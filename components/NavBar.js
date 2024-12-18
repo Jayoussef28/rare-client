@@ -53,6 +53,9 @@ export default function NavBar() {
               <Link passHref href="/category">
                 <Nav.Link>Category</Nav.Link>
               </Link>
+              <Link passHref href="/users">
+                <Nav.Link>Users</Nav.Link>
+              </Link>
             </div>
             <div style={{
               display: 'flex',
